@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  provider-one:
+    image: ${DOCKER_REGISTRY-}provideronemock
+    build:
+      context: .
+      dockerfile: ProviderOneMock/Dockerfile
+  provider-two:
+    image: ${DOCKER_REGISTRY-}providertwomock
+    build:
+      context: .
+      dockerfile: ProviderTwoMock/Dockerfile
+
+  testtask:
+    image: ${DOCKER_REGISTRY-}testtask
+    build:
+      context: .
+      dockerfile: TestTask/Dockerfile
+

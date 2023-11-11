@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  provider-one:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8081
+    ports:
+      - "8081:8081"
+
+  provider-two:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8082
+    ports:
+      - "8082:8082"
+
+  testtask:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ProviderOneClientOptions__BaseAddress=http://provider-one:8081
+      - ProviderTwoClientOptions__BaseAddress=http://provider-two:8082
+    ports:
+      - "8080:8080"
+
